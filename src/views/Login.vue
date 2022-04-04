@@ -1,18 +1,17 @@
 <template>
   <div class="home">
-    <h1>Welcome to Homepage</h1>
-    <button @click="login">Click to Login</button>
+    <h1>Welcome to Login Page</h1>
+    <button @click="homepage">Click to go Home</button>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import VueRouter from 'vue-router'
 
 @Component
 export default class Homepage extends Vue {
-  login(): void{
-    this.$router.push({path: '/login'})
+  homepage(): void{
+    this.$router.replace({path: '/'})
   }
 }
 </script>
