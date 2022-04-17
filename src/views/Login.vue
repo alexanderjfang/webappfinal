@@ -3,7 +3,7 @@
     <h1>Welcome to Login Page</h1>
     <button @click="homepage">Home Page</button>
     <button @click="login">Login Page</button>
-    <button @click="randomrecipe">Random Recipe Page</button>
+    <button @click="allrecipes">All Recipes Page</button>
     <button @click="favorites">Favorite Recipes Page</button>
   </div>
 </template>
@@ -19,8 +19,8 @@ export default class Homepage extends Vue {
   login(): void{
     //already on this page
   }
-  randomrecipe(): void{
-    this.$router.push({path: '/randomrecipe'})
+  allrecipes(): void{
+    this.$router.push({path: '/allrecipes'})
   }
   favorites(): void{
     this.$router.push({path: '/favorites'})
