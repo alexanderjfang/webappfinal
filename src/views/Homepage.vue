@@ -1,7 +1,10 @@
 <template>
   <div class="home">
     <h1>Welcome to Homepage</h1>
-    <button @click="login">Click to Login</button>
+    <button @click="homepage">Home Page</button>
+    <button @click="login">Login Page</button>
+    <button @click="randomrecipe">Random Recipe Page</button>
+    <button @click="favorites">Favorite Recipes Page</button>
   </div>
 </template>
 
@@ -11,8 +14,17 @@ import VueRouter from 'vue-router'
 
 @Component
 export default class Homepage extends Vue {
+  homepage(): void{
+    //already on this page
+  }
   login(): void{
     this.$router.push({path: '/login'})
+  }
+  randomrecipe(): void{
+    this.$router.push({path: '/randomrecipe'})
+  }
+  favorites(): void{
+    this.$router.push({path: '/favorites'})
   }
 }
 </script>
