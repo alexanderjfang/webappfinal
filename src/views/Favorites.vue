@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="favorites">
     <div class="navbar">
       <a @click="homepage">Home</a>      
       <a @click="allrecipes">All Recipes</a>
@@ -8,10 +8,10 @@
       <a id="login" @click="login">Login</a>
     </div>
     <h1>Welcome to Favorite Recipes Page</h1>
-    <button @click="homepage">Home Page</button>
+    <!--<button @click="homepage">Home Page</button>
     <button @click="login">Login Page</button>
     <button @click="allrecipes">All Recipes Page</button>
-    <button @click="favorites">Favorite Recipes Page</button>
+    <button @click="favorites">Favorite Recipes Page</button>-->
   </div>
 </template>
 

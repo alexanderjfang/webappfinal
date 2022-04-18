@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class = "home">
     <div class="navbar">
       <a @click="homepage">Home</a>      
       <a @click="allrecipes">All Recipes</a>
@@ -10,14 +10,17 @@
     <div class="main">
       <h1>Welcome to RandomRecipe</h1>
       <a>RandomRecipe helps take the decision making out of mealtime.  Use our
-        page to find a tasty, health, and easy to make recipies in no time.
-        Our Random button will pick from any reicpie on our list to get
+        page to find tasty, healthy, and easy to make recipies in no time.
+        Our Random button will pick from any recipe on our list to get
         you started.  Then, if you log in, you can save and revisit your
         favorites at any time.  Don't like the randomness, no problem, you
         can select our All Recipes page to browse our entire selection of
-        top quality recipeis./n</a>
-        <button> RANDOM!!!</button>
-        <h2>https://www.w3schools.com/howto/howto_css_fixed_menu.asp should be cited</h2>
+        top quality recipes.</a>
+        <div />
+        <button> GET RANDOM!!!</button>
+        <!-- IMPORTANT CITATION BELOW
+          <h2>https://www.w3schools.com/howto/howto_css_fixed_menu.asp should be cited</h2>-->
+        <!--<h2>this is to show how it scrolls</h2>
         <h2>this is to show how it scrolls</h2>
         <h2>this is to show how it scrolls</h2>
         <h2>this is to show how it scrolls</h2>
@@ -31,8 +34,7 @@
         <h2>this is to show how it scrolls</h2>
         <h2>this is to show how it scrolls</h2>
         <h2>this is to show how it scrolls</h2>
-        <h2>this is to show how it scrolls</h2>
-        <h2>this is to show how it scrolls</h2>
+        <h2>this is to show how it scrolls</h2>-->
 
     </div>
   </div>
