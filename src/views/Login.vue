@@ -7,7 +7,7 @@
       <!-- <a2 id="title"> RandomRecipe </a2> -->
       <a id="login" @click="login">Login</a>
     </div>  
-    <h1>Welcome to Login Page</h1>
+    <h1>Signup and Login</h1>
     <!--<button @click="homepage">Home Page</button>
     <button @click="login">Login Page</button>
     <button @click="allrecipes">All Recipes Page</button>
@@ -17,16 +17,19 @@
       <div id="loginpanel">
         <input type="text" v-model="u_email"
           placeholder="Enter your email">
+        <div />
         <input type="password" v-model="u_pass"
           placeholder="Enter your password">
+        <br>
+        <br>
         <div id="loginByEmail">
           <button :disabled="!isValidInput"
             @click="createAccount">Signup</button>
-          <button :disabled="u_email.length === 0" @click="resetPass">Reset
-            Password</button>
           <button :disabled="!isValidInput"
             @click="withEmail">Login</button>
         </div>
+        <button :disabled="u_email.length === 0" @click="resetPass">Reset
+            Password</button>
         <div>
           <!--<input id="verif" type="checkbox" v-model="emailVerification">
           <label for="verif">Send verification email</label>
@@ -175,6 +178,10 @@ export default class Homepage extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.login > * {
+  text-align: center;
+}
+
 .navbar {
   overflow: hidden;
   background-color: #333;
@@ -213,4 +220,20 @@ export default class Homepage extends Vue {
   background: #ddd;
   color: black;
 }
+
+section{
+  margin-left: auto;
+  margin-right: auto;
+  background: darkgray;
+  width: fit-content;
+  align-self: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  outline-color: black;
+  outline-width: 2px;
+  outline-style: solid;
+}
+
 </style>
