@@ -22,8 +22,8 @@
         <th>Prep Time</th>
       </tr>
       <tr v-for="(u,pos) in recipeArray" :key="pos">
-            <td><a @click="singularrecipe"><img :src="u.picture" style="width:200px"></a></td>
-            <td><a @click="singularrecipe" style="color:blue;text-decoration:underline">{{u.name}}</a></td>
+            <td><a @click="singularrecipe(u.id)"><img :src="u.picture" style="width:200px"></a></td>
+            <td><a @click="singularrecipe(u.id)" style="color:blue;text-decoration:underline">{{u.name}}</a></td>
             <td>{{u.category}}</td>
             <td>{{u.feeds}}</td>
             <td>{{u.prepTime}}</td>
@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import {FirebaseApp, initializeApp} from 'firebase/app';
 import {getFirestore, QueryDocumentSnapshot, Firestore, getDocs, collection, DocumentReference, doc, CollectionReference, setDoc, QuerySnapshot, deleteDoc, DocumentData} from 'firebase/firestore';
 import { firebaseConfig } from "@/myconfig";
@@ -61,9 +61,10 @@ export default class Homepage extends Vue {
   favorites(): void{
     this.$router.push({path: '/favorites'})
   }
-  singularrecipe(): void{
-    this.$router.push({path: '/singular'})
+  singularrecipe(recipeID: string): void{
+    this.$router.push({name: "le Singular Recipe Page", params: {singularRecipeID:recipeID}})
   }
+
   mounted(): void {
     //implementing database parsing to reveal all recipes
 
@@ -75,9 +76,6 @@ export default class Homepage extends Vue {
         this.recipeArray.push(qd.data())
       });
     });
-
-    //delete
-    console.log(this.recipeArray)
   }
 }
 </script>

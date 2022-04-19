@@ -17,7 +17,7 @@ const myRouteArr: Array<RouteConfig> = [
   {name:"le Login Page", path: "/login", component: Login},
   {name:"le All Recipes Page", path: "/allrecipes", component: AllRecipes},
   {name:"le Favorites Page", path: "/favorites", component: Favorites},
-  {name:"le Singular Recipe Page", path: "/singular", component: SingularRecipe}
+  {name:"le Singular Recipe Page", path: "/singular/:singularRecipeID", component: SingularRecipe, props: true}
 ]
 
 const myRouter = new VueRouter({routes: myRouteArr})

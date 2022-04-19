@@ -7,12 +7,12 @@
       <!-- <a2 id="title"> RandomRecipe </a2> -->
       <a id="login" @click="login">Login</a>
     </div>  
-    <h1>This is a singular recipe page</h1>
+    <h1>This is a singular recipe page for {{this.singularRecipeID}}</h1>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import {
   getAuth,
   Auth,
@@ -30,6 +30,11 @@ import {
 
 @Component
 export default class Homepage extends Vue {
+
+  @Prop() singularRecipeID!: string
+  //recipeIDString: string = this.recipeID;
+  
+
   homepage(): void{
     this.$router.replace({path: '/'})
   }
@@ -42,13 +47,16 @@ export default class Homepage extends Vue {
   favorites(): void{
     this.$router.push({path: '/favorites'})
   }
-  recipeID = "";
-  recipeName = "";
+  //recipeID = "";
+  //recipeName = "";
   auth: Auth | null = null;
 
   mounted(): void {
     this.auth = getAuth();
+    //delete the console log below
+    //console.log("hello "+ this.singularRecipeID)
   }
+
 }
 </script>
 
