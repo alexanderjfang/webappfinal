@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <p>  without this paragraph, the menu bar covers headers </p>
+    <br>
+    <br>
     <router-view></router-view>
   </div>
 </template>

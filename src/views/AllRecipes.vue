@@ -1,6 +1,6 @@
 <template>
   <div class="allrecipes">
-    <h1>Welcome to All Recipes Page</h1>
+    <h1>All Recipes</h1>
     <!--<button @click="homepage">Home Page</button>
     <button @click="login">Login Page</button>
     <button @click="allrecipes">All Recipes Page</button>
@@ -22,8 +22,8 @@
         <th>Prep Time</th>
       </tr>
       <tr v-for="(u,pos) in recipeArray" :key="pos">
-            <td><img :src="u.picture" style="height:250px"></td>
-            <td>{{u.name}}</td>
+            <td><a @click="singularrecipe"><img :src="u.picture" style="width:200px"></a></td>
+            <td><a @click="singularrecipe" style="color:blue;text-decoration:underline">{{u.name}}</a></td>
             <td>{{u.category}}</td>
             <td>{{u.feeds}}</td>
             <td>{{u.prepTime}}</td>
@@ -61,6 +61,9 @@ export default class Homepage extends Vue {
   favorites(): void{
     this.$router.push({path: '/favorites'})
   }
+  singularrecipe(): void{
+    this.$router.push({path: '/singular'})
+  }
   mounted(): void {
     //implementing database parsing to reveal all recipes
 
@@ -81,6 +84,10 @@ export default class Homepage extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.allrecipes > * {
+  text-align: center;
+}
+
 .navbar {
   overflow: hidden;
   background-color: #333;
@@ -118,5 +125,19 @@ export default class Homepage extends Vue {
 .navbar a:hover {
   background: #ddd;
   color: black;
+}
+
+table{
+  margin-left: auto;
+  margin-right: auto;
+}
+th{
+  min-width: 200px;
+  outline-style: solid;
+  outline-width: 2px;
+}
+td{
+  outline-style: solid;
+  outline-width: 2px;
 }
 </style>

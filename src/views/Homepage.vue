@@ -72,6 +72,10 @@ export default class Homepage extends Vue {
 }
 
 /* Links inside the navbar */
+.home > * {
+  text-align: center;
+}
+
 .navbar a {
   float: left;
   display: block;

@@ -7,7 +7,7 @@
       <!-- <a2 id="title"> RandomRecipe </a2> -->
       <a id="login" @click="login">Login</a>
     </div>  
-    <h1>Signup and Login</h1>
+    <h1>Signup or login now to save some recipes</h1>
     <!--<button @click="homepage">Home Page</button>
     <button @click="login">Login Page</button>
     <button @click="allrecipes">All Recipes Page</button>
