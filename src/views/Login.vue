@@ -131,7 +131,7 @@ export default class Homepage extends Vue {
     signInWithEmailAndPassword(this.auth!, this.u_email, this.u_pass)
       .then(async (cr: UserCredential) => {
         if (cr.user.emailVerified)
-          this.$router.push({ name: "favorites" });
+          this.$router.push({ path: "/favorites" });
         else {
           this.showMessage("You must first verify your email");
           await signOut(this.auth!);
@@ -148,8 +148,8 @@ export default class Homepage extends Vue {
       .then((cred: UserCredential) => {
         console.log("Yes, logged in");
 
-        // Move to the home page
-        this.$router.push({ name: "home", params: { byWayOf: "Google" } });
+        // Move to the favorites page
+        this.$router.push({ path: "/favorites" });
       })
       .catch((err: any) => {
         this.showMessage(`Unable to login with GMail ${err}`);
