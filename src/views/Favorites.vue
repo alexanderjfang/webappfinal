@@ -5,17 +5,23 @@
       <a @click="allrecipes">All Recipes</a>
       <a @click="favorites">Favorite Recipes</a>  
       <!-- <a2 id="title"> RandomRecipe </a2> -->
-      <a id="login" @click="login">Login</a>
+      <a v-if="!loggedin" id="login" @click="login">Login</a>
+      <a v-if="loggedin" id="login" @click="logout">Logout</a>
     </div>
     <h1>Your Favorites</h1>
   </div>
 </template>
 
 <script lang="ts">
+import { Auth, getAuth, signOut, User } from 'firebase/auth';
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Homepage extends Vue {
+  //LOGOUT LOGIC
+  auth: Auth | null = null;
+  loggedin = false;
+  
   homepage(): void{
     this.$router.replace({path: '/'})
   }
@@ -27,6 +33,27 @@ export default class Homepage extends Vue {
   }
   favorites(): void{
     //already on this page
+  }
+
+  //LOGOUT LOGIC
+  logout(): void {
+    if (this.auth) signOut(this.auth);
+    this.loggedin=false;
+    //console.log("logged out")
+  }
+
+  mounted(): void{
+    //LOGOUT LOGIC
+    this.auth = getAuth();
+    const user = this.auth.currentUser as User;
+    const uid: string = this.auth.currentUser?.uid as string;
+    if(uid==null){
+      //user is not logged in
+    }
+    else{
+      //user is logged in
+      this.loggedin = true
+    }
   }
 }
 </script>

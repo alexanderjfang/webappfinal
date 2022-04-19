@@ -6,7 +6,8 @@
       <a @click="allrecipes">All Recipes</a>
       <a @click="favorites">Favorite Recipes</a>  
       <!-- <a2 id="title"> RandomRecipe </a2> -->
-      <a id="login" @click="login">Login</a>
+      <a v-if="!loggedin" id="login" @click="login">Login</a>
+      <a v-if="loggedin" id="login" @click="logout">Logout</a>
     </div>  
     <!-- Below is the table full of recipes -->
     <table>
@@ -34,7 +35,8 @@ import {FirebaseApp, initializeApp} from 'firebase/app';
 import {getFirestore, QueryDocumentSnapshot, Firestore, getDocs, collection, DocumentReference, doc, CollectionReference, setDoc, QuerySnapshot, deleteDoc, DocumentData} from 'firebase/firestore';
 import { firebaseConfig } from "@/myconfig";
 import {
-  getAuth, User,
+  Auth,
+  getAuth, signOut, User,
 } from "firebase/auth";
 
 const myApp:FirebaseApp = initializeApp(firebaseConfig);
@@ -42,6 +44,10 @@ const myDB:Firestore = getFirestore(myApp);
 
 @Component
 export default class Homepage extends Vue {
+  //LOGOUT LOGIC
+  auth: Auth | null = null;
+  loggedin = false;
+  
   //create array for storing the recipes
   recipeArray: DocumentData[] = []
   
@@ -61,7 +67,26 @@ export default class Homepage extends Vue {
     this.$router.push({name: "le Singular Recipe Page", params: {singularRecipeID:recipeID}})
   }
 
+  //LOGOUT LOGIC
+  logout(): void {
+    if (this.auth) signOut(this.auth);
+    this.loggedin=false;
+    //console.log("logged out")
+  }
+
   mounted(): void {
+    //LOGOUT LOGIC
+    this.auth = getAuth();
+    const user = this.auth.currentUser as User;
+    const uid: string = this.auth.currentUser?.uid as string;
+    if(uid==null){
+      //user is not logged in
+    }
+    else{
+      //user is logged in
+      this.loggedin = true
+    }
+
     //get collection reference and add recipes to the array
     let recipes:CollectionReference
     recipes = collection(myDB, 'recipes')

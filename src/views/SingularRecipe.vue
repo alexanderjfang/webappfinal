@@ -5,7 +5,8 @@
       <a @click="allrecipes">All Recipes</a>
       <a @click="favorites">Favorite Recipes</a>  
       <!-- <a2 id="title"> RandomRecipe </a2> -->
-      <a id="login" @click="login">Login</a>
+      <a v-if="!loggedin" id="login" @click="login">Login</a>
+      <a v-if="loggedin" id="login" @click="logout">Logout</a>
     </div>  
     <!--recipe data displayed below-->
     <br>
@@ -45,6 +46,7 @@ import {
   signOut,
   signInWithRedirect,
   sendPasswordResetEmail,
+  User,
 } from "firebase/auth";
 import { collection, CollectionReference, doc, DocumentData, DocumentReference, Firestore, getDoc, getFirestore, setDoc } from 'firebase/firestore';
 import { firebaseConfig } from '@/myconfig';
@@ -55,6 +57,10 @@ const myDB:Firestore = getFirestore(myApp);
 
 @Component
 export default class Homepage extends Vue {
+  //LOGOUT LOGIC
+  auth: Auth | null = null;
+  loggedin = false;
+
   requestedRecipeData: DocumentData = []
   @Prop() singularRecipeID!: string
   
@@ -69,6 +75,13 @@ export default class Homepage extends Vue {
   }
   favorites(): void{
     this.$router.push({path: '/favorites'})
+  }
+
+  //LOGOUT LOGIC
+  logout(): void {
+    if (this.auth) signOut(this.auth);
+    this.loggedin=false;
+    //console.log("logged out")
   }
 
   saveRecipeToUserFolder(): void{
@@ -87,10 +100,18 @@ export default class Homepage extends Vue {
     }
   }
 
-  auth: Auth | null = null;
-
   mounted(): void {
+    //LOGOUT LOGIC
     this.auth = getAuth();
+    const user = this.auth.currentUser as User;
+    const uid: string = this.auth.currentUser?.uid as string;
+    if(uid==null){
+      //user is not logged in
+    }
+    else{
+      //user is logged in
+      this.loggedin = true
+    }
 
     //retrieve the recipe from the database
     

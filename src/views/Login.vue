@@ -5,7 +5,8 @@
       <a @click="allrecipes">All Recipes</a>
       <a @click="favorites">Favorite Recipes</a>  
       <!-- <a2 id="title"> RandomRecipe </a2> -->
-      <a id="login" @click="login">Login</a>
+      <a v-if="!loggedin" id="login" @click="login">Login</a>
+      <a v-if="loggedin" id="login" @click="logout">Logout</a>
     </div>  
     <h1>Signup or login now to save some recipes</h1>
     <!--Login section below-->
@@ -52,10 +53,15 @@ import {
   signOut,
   signInWithRedirect,
   sendPasswordResetEmail,
+  User,
 } from "firebase/auth";
 
 @Component
 export default class Homepage extends Vue {
+  //LOGOUT LOGIC
+  auth: Auth | null = null;
+  loggedin = false;
+
   homepage(): void{
     this.$router.replace({path: '/'})
   }
@@ -71,15 +77,31 @@ export default class Homepage extends Vue {
   u_email = "";
   u_pass = "";
   message = "";
-  auth: Auth | null = null;
   emailVerification = false;
 
   get isValidInput(): boolean {
     return this.u_email.length > 0 && this.u_pass.length > 0;
   }
 
+  //LOGOUT LOGIC
+  logout(): void {
+    if (this.auth) signOut(this.auth);
+    this.loggedin=false;
+    //console.log("logged out")
+  }
+
   mounted(): void {
+    //LOGOUT LOGIC
     this.auth = getAuth();
+    const user = this.auth.currentUser as User;
+    const uid: string = this.auth.currentUser?.uid as string;
+    if(uid==null){
+      //user is not logged in
+    }
+    else{
+      //user is logged in
+      this.loggedin = true
+    }
   }
 
   showMessage(txt: string) {
