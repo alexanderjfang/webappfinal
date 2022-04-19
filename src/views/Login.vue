@@ -48,10 +48,8 @@ import {
   UserCredential,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  GithubAuthProvider,
   sendEmailVerification,
   signOut,
-  signInWithRedirect,
   sendPasswordResetEmail,
   User,
 } from "firebase/auth";

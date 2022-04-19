@@ -36,16 +36,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import {
   getAuth,
   Auth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  UserCredential,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  GithubAuthProvider,
-  sendEmailVerification,
   signOut,
-  signInWithRedirect,
-  sendPasswordResetEmail,
   User,
 } from "firebase/auth";
 import { collection, CollectionReference, doc, DocumentData, DocumentReference, Firestore, getDoc, getFirestore, setDoc } from 'firebase/firestore';
@@ -190,6 +181,7 @@ export default class Homepage extends Vue {
 }
 
 #meta {
+  /* Needs to be adjusted because small screens cause overlap */
   margin-top: auto;
   flex: 0 1 auto;
   position: relative;

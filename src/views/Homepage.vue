@@ -28,8 +28,6 @@
 <script lang="ts">
 import { signOut, getAuth, User, Auth } from 'firebase/auth';
 import { Component, Vue } from 'vue-property-decorator';
-import VueRouter from 'vue-router'
-
 
 @Component
 export default class Homepage extends Vue {
