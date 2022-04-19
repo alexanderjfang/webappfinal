@@ -12,6 +12,7 @@
     <div id="picandmeta">
       <img :src = this.requestedRecipeData[7] width=250px>
       <div id="meta">
+        <button id="favbutton">Add to favorites</button>
         <p>{{requestedRecipeData[0]}} • feeds: {{requestedRecipeData[2]}}</p>
         <br>
           <div id="meta2">
@@ -118,6 +119,7 @@ export default class Homepage extends Vue {
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
+  z-index: 5000;
 }
 
 /* Links inside the navbar */
@@ -164,6 +166,7 @@ export default class Homepage extends Vue {
 
 #picandmeta {
   display: flex;
+  z-index: -5000;
 }
 
 #picandmeta > img {
@@ -171,6 +174,7 @@ export default class Homepage extends Vue {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+  /*citation: https://stackoverflow.com/questions/33444666/how-to-center-align-one-flex-item-and-right-align-another-using-flexbox*/
 }
 
 </style>
