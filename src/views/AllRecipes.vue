@@ -1,10 +1,6 @@
 <template>
   <div class="allrecipes">
     <h1>All Recipes</h1>
-    <!--<button @click="homepage">Home Page</button>
-    <button @click="login">Login Page</button>
-    <button @click="allrecipes">All Recipes Page</button>
-    <button @click="favorites">Favorite Recipes Page</button>-->
     <div class="navbar">
       <a @click="homepage">Home</a>      
       <a @click="allrecipes">All Recipes</a>
@@ -66,8 +62,6 @@ export default class Homepage extends Vue {
   }
 
   mounted(): void {
-    //implementing database parsing to reveal all recipes
-
     //get collection reference and add recipes to the array
     let recipes:CollectionReference
     recipes = collection(myDB, 'recipes')
@@ -103,6 +97,7 @@ export default class Homepage extends Vue {
   padding: 16px 16px;
   text-decoration: none;
 }
+
 .navbar a2 {
   float: center;
   display: block;
@@ -112,8 +107,6 @@ export default class Homepage extends Vue {
   padding: 8px 8px;
   text-decoration: none;
 }
-
-
 
 #login {
   float: right;
@@ -129,11 +122,13 @@ table{
   margin-left: auto;
   margin-right: auto;
 }
+
 th{
   min-width: 200px;
   outline-style: solid;
   outline-width: 2px;
 }
+
 td{
   outline-style: solid;
   outline-width: 2px;

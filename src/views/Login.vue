@@ -8,10 +8,6 @@
       <a id="login" @click="login">Login</a>
     </div>  
     <h1>Signup or login now to save some recipes</h1>
-    <!--<button @click="homepage">Home Page</button>
-    <button @click="login">Login Page</button>
-    <button @click="allrecipes">All Recipes Page</button>
-    <button @click="favorites">Favorite Recipes Page</button>-->
     <!--Login section below-->
     <section>
       <div id="loginpanel">
@@ -31,14 +27,9 @@
         <button :disabled="u_email.length === 0" @click="resetPass">Reset
             Password</button>
         <div>
-          <!--<input id="verif" type="checkbox" v-model="emailVerification">
-          <label for="verif">Send verification email</label>
-          AYO WE NEED TO AUTO SEND VERIFY EMAIL TO MAKE IT SIMPLER
-          -->
         </div>
         <div id="withProvider">
           <button @click="withGMail">Google</button>
-          <!--<button @click="withGitHub">GitHub</button>-->
         </div>
       </div>
     </section>
@@ -155,24 +146,6 @@ export default class Homepage extends Vue {
         this.showMessage(`Unable to login with GMail ${err}`);
       });
   }
-
-  /*withGitHub(): void {
-    const provider = new GithubAuthProvider();
-    // provider.addScope("repo");
-    // provider.setCustomParameters({
-    //   allow_signup: "false",
-    // });
-    signInWithPopup(this.auth!, provider)
-      .then((cred: UserCredential) => {
-        console.log("Yes, logged in with GitHub");
-
-        // Move to the home page
-        this.$router.push({ name: "home", params: { byWayOf: "GitHub" } });
-      })
-      .catch((err: any) => {
-        this.showMessage(`Unable to login with GitHub ${err}`);
-      });
-  }*/
 }
 </script>
 
@@ -199,6 +172,7 @@ export default class Homepage extends Vue {
   padding: 16px 16px;
   text-decoration: none;
 }
+
 .navbar a2 {
   float: center;
   display: block;
@@ -208,8 +182,6 @@ export default class Homepage extends Vue {
   padding: 8px 8px;
   text-decoration: none;
 }
-
-
 
 #login {
   float: right;
@@ -235,5 +207,4 @@ section{
   outline-width: 2px;
   outline-style: solid;
 }
-
 </style>

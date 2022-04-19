@@ -8,10 +8,6 @@
       <a id="login" @click="login">Login</a>
     </div>
     <h1>Your Favorites</h1>
-    <!--<button @click="homepage">Home Page</button>
-    <button @click="login">Login Page</button>
-    <button @click="allrecipes">All Recipes Page</button>
-    <button @click="favorites">Favorite Recipes Page</button>-->
   </div>
 </template>
 
@@ -58,6 +54,7 @@ export default class Homepage extends Vue {
   padding: 16px 16px;
   text-decoration: none;
 }
+
 .navbar a2 {
   float: center;
   display: block;
@@ -67,8 +64,6 @@ export default class Homepage extends Vue {
   padding: 8px 8px;
   text-decoration: none;
 }
-
-
 
 #login {
   float: right;

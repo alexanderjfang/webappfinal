@@ -7,7 +7,19 @@
       <!-- <a2 id="title"> RandomRecipe </a2> -->
       <a id="login" @click="login">Login</a>
     </div>  
-    <h1>This is a singular recipe page for {{this.singularRecipeID}}</h1>
+    <!--recipe data displayed below-->
+    <div id="picandmeta">
+    <img :src = this.requestedRecipeData[7] width=250px>
+    <p>{{requestedRecipeData[0]}} • feeds: {{requestedRecipeData[2]}}</p>
+    <img src = "http://www.clipartsuggest.com/images/364/orologio-clock-alarm-icon-coloring-book-colouring-coloring-book-9HZUv4-clipart.png" width=25px>
+    <p>{{requestedRecipeData[8]}}</p>
+    </div>
+    <h2>{{this.requestedRecipeData[6]}}</h2>
+    <p>{{this.requestedRecipeData[1]}}</p>
+    <h2>Ingredients</h2>
+    <p>{{this.requestedRecipeData[4]}}</p>
+    <h2>Instructions</h2>
+    <p>{{this.requestedRecipeData[5]}}</p>
   </div>
 </template>
 
@@ -27,14 +39,18 @@ import {
   signInWithRedirect,
   sendPasswordResetEmail,
 } from "firebase/auth";
+import { collection, CollectionReference, doc, DocumentData, DocumentReference, Firestore, getDoc, getFirestore } from 'firebase/firestore';
+import { firebaseConfig } from '@/myconfig';
+import { FirebaseApp, initializeApp } from 'firebase/app';
+
+const myApp:FirebaseApp = initializeApp(firebaseConfig);
+const myDB:Firestore = getFirestore(myApp);
 
 @Component
 export default class Homepage extends Vue {
-
+  requestedRecipeData: DocumentData = []
   @Prop() singularRecipeID!: string
-  //recipeIDString: string = this.recipeID;
   
-
   homepage(): void{
     this.$router.replace({path: '/'})
   }
@@ -47,16 +63,40 @@ export default class Homepage extends Vue {
   favorites(): void{
     this.$router.push({path: '/favorites'})
   }
-  //recipeID = "";
-  //recipeName = "";
+
   auth: Auth | null = null;
 
   mounted(): void {
     this.auth = getAuth();
-    //delete the console log below
-    //console.log("hello "+ this.singularRecipeID)
-  }
 
+    //retrieve the recipe from the database
+    
+    let recipes:CollectionReference
+    recipes = collection(myDB, 'recipes')
+    var requestedRecipeReference = doc( myDB, 'recipes', this.singularRecipeID )
+    var requestedRecipe = getDoc(requestedRecipeReference).then((results) => {
+      this.requestedRecipeData.push(results.data()?.category)
+      this.requestedRecipeData.push(results.data()?.description)
+      this.requestedRecipeData.push(results.data()?.feeds)
+      this.requestedRecipeData.push(results.data()?.id)
+      this.requestedRecipeData.push(results.data()?.ingredients)
+      this.requestedRecipeData.push(results.data()?.instructions)
+      this.requestedRecipeData.push(results.data()?.name)
+      this.requestedRecipeData.push(results.data()?.picture)
+      this.requestedRecipeData.push(results.data()?.prepTime)
+      })
+      /*
+      requestedRecipeData[0] = category
+      requestedRecipeData[1] = description
+      requestedRecipeData[2] = feeds
+      requestedRecipeData[3] = id
+      requestedRecipeData[4] = ingredients
+      requestedRecipeData[5] = intructions
+      requestedRecipeData[6] = name
+      requestedRecipeData[7] = picture
+      requestedRecipeData[8] = prepTime
+      */
+  }
 }
 </script>
 
@@ -83,6 +123,7 @@ export default class Homepage extends Vue {
   padding: 16px 16px;
   text-decoration: none;
 }
+
 .navbar a2 {
   float: center;
   display: block;
@@ -92,8 +133,6 @@ export default class Homepage extends Vue {
   padding: 8px 8px;
   text-decoration: none;
 }
-
-
 
 #login {
   float: right;

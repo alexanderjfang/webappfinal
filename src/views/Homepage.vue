@@ -18,23 +18,7 @@
         top quality recipes.</a>
         <div />
         <button> GET RANDOM!!!</button>
-        <!-- IMPORTANT CITATION BELOW
-          <h2>https://www.w3schools.com/howto/howto_css_fixed_menu.asp should be cited</h2>-->
-        <!--<h2>this is to show how it scrolls</h2>
-        <h2>this is to show how it scrolls</h2>
-        <h2>this is to show how it scrolls</h2>
-        <h2>this is to show how it scrolls</h2>
-        <h2>this is to show how it scrolls</h2>
-        <h2>this is to show how it scrolls</h2>
-        <h2>this is to show how it scrolls</h2>
-        <h2>this is to show how it scrolls</h2>
-        <h2>this is to show how it scrolls</h2>
-        <h2>this is to show how it scrolls</h2>
-        <h2>this is to show how it scrolls</h2>
-        <h2>this is to show how it scrolls</h2>
-        <h2>this is to show how it scrolls</h2>
-        <h2>this is to show how it scrolls</h2>
-        <h2>this is to show how it scrolls</h2>-->
+        <!-- CITATION: <h2>https://www.w3schools.com/howto/howto_css_fixed_menu.asp should be cited</h2>-->
 
     </div>
   </div>
@@ -60,7 +44,6 @@ export default class Homepage extends Vue {
   }
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .navbar {
@@ -84,6 +67,7 @@ export default class Homepage extends Vue {
   padding: 16px 16px;
   text-decoration: none;
 }
+
 .navbar a2 {
   float: center;
   display: block;
@@ -93,8 +77,6 @@ export default class Homepage extends Vue {
   padding: 8px 8px;
   text-decoration: none;
 }
-
-
 
 #login {
   float: right;
