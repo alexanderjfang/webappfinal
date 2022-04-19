@@ -8,11 +8,17 @@
       <a id="login" @click="login">Login</a>
     </div>  
     <!--recipe data displayed below-->
+    <br>
     <div id="picandmeta">
-    <img :src = this.requestedRecipeData[7] width=250px>
-    <p>{{requestedRecipeData[0]}} • feeds: {{requestedRecipeData[2]}}</p>
-    <img src = "http://www.clipartsuggest.com/images/364/orologio-clock-alarm-icon-coloring-book-colouring-coloring-book-9HZUv4-clipart.png" width=25px>
-    <p>{{requestedRecipeData[8]}}</p>
+      <img :src = this.requestedRecipeData[7] width=250px>
+      <div id="meta">
+        <p>{{requestedRecipeData[0]}} • feeds: {{requestedRecipeData[2]}}</p>
+        <br>
+          <div id="meta2">
+            <img src = "http://www.clipartsuggest.com/images/364/orologio-clock-alarm-icon-coloring-book-colouring-coloring-book-9HZUv4-clipart.png" width=25px height=25px>
+            <p>{{requestedRecipeData[8]}}</p>
+          </div>
+      </div>
     </div>
     <h2>{{this.requestedRecipeData[6]}}</h2>
     <p>{{this.requestedRecipeData[1]}}</p>
@@ -55,7 +61,7 @@ export default class Homepage extends Vue {
     this.$router.replace({path: '/'})
   }
   login(): void{
-    //already on this page
+    this.$router.push({path: '/login'})
   }
   allrecipes(): void{
     this.$router.push({path: '/allrecipes'})
@@ -143,4 +149,28 @@ export default class Homepage extends Vue {
   background: #ddd;
   color: black;
 }
+
+#meta {
+  margin-top: auto;
+  flex: 0 1 auto;
+  position: relative;
+  left: 50%;
+  transform: translateX(-100%);
+}
+
+#meta2{
+  display: flex;
+}
+
+#picandmeta {
+  display: flex;
+}
+
+#picandmeta > img {
+  flex: 0 1 auto;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 </style>
