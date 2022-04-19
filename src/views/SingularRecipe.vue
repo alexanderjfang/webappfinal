@@ -12,7 +12,7 @@
     <div id="picandmeta">
       <img :src = this.requestedRecipeData[7] width=250px>
       <div id="meta">
-        <button id="favbutton">Add to favorites</button>
+        <button @click="saveRecipeToUserFolder" id="favbutton">Add to favorites</button>
         <p>{{requestedRecipeData[0]}} • feeds: {{requestedRecipeData[2]}}</p>
         <br>
           <div id="meta2">
@@ -46,7 +46,7 @@ import {
   signInWithRedirect,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { collection, CollectionReference, doc, DocumentData, DocumentReference, Firestore, getDoc, getFirestore } from 'firebase/firestore';
+import { collection, CollectionReference, doc, DocumentData, DocumentReference, Firestore, getDoc, getFirestore, setDoc } from 'firebase/firestore';
 import { firebaseConfig } from '@/myconfig';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 
@@ -69,6 +69,17 @@ export default class Homepage extends Vue {
   }
   favorites(): void{
     this.$router.push({path: '/favorites'})
+  }
+
+  saveRecipeToUserFolder(): void{
+    console.log("saving recipe to your folder")
+    const auth = getAuth();
+    const uid: string = auth.currentUser?.uid as string;
+    const userFolder: DocumentReference = doc(myDB, 'userSaves/users')
+    const recipe: DocumentReference = doc(myDB, "userSaves", "users", uid, this.requestedRecipeData[6])
+    setDoc(recipe, {category: this.requestedRecipeData[0], description: this.requestedRecipeData[1], feeds: this.requestedRecipeData[2],
+     id: this.requestedRecipeData[3], ingredients: this.requestedRecipeData[4], instructions: this.requestedRecipeData[5],
+      name: this.requestedRecipeData[6], picture: this.requestedRecipeData[7], prepTime: this.requestedRecipeData[8]})
   }
 
   auth: Auth | null = null;
