@@ -68,6 +68,10 @@ export default class Homepage extends Vue {
     //console.log("logged out")
   }
 
+  singularrecipe(recipeID: string): void{
+    this.$router.push({name: "le Singular Recipe Page", params: {singularRecipeID:recipeID}})
+  }
+
   mounted(): void{
     //LOGOUT LOGIC
     this.auth = getAuth();
