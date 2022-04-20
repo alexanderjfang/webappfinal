@@ -13,7 +13,8 @@
     <div id="picandmeta">
       <img :src = this.requestedRecipeData[7] width=250px>
       <div id="meta">
-        <button @click="saveRecipeToUserFolder" id="favbutton">Add to favorites</button>
+        <button v-if="!(this.userRecipeArray.indexOf(this.singularRecipeID) > -1)" @click="saveRecipeToUserFolder">Add to favorites</button>
+        <button v-if="(this.userRecipeArray.indexOf(this.singularRecipeID) > -1)" @click="removeRecipeFromUserFolder">Remove from favorites</button>
         <p>{{requestedRecipeData[0]}} • feeds: {{requestedRecipeData[2]}}</p>
         <br>
           <div id="meta2">
@@ -39,7 +40,7 @@ import {
   signOut,
   User,
 } from "firebase/auth";
-import { collection, CollectionReference, doc, DocumentData, DocumentReference, Firestore, getDoc, getFirestore, setDoc } from 'firebase/firestore';
+import { collection, CollectionReference, doc, DocumentData, DocumentReference, Firestore, getDoc, getDocs, getFirestore, QueryDocumentSnapshot, QuerySnapshot, setDoc } from 'firebase/firestore';
 import { firebaseConfig } from '@/myconfig';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 
@@ -51,6 +52,7 @@ export default class Homepage extends Vue {
   //LOGOUT LOGIC
   auth: Auth | null = null;
   loggedin = false;
+  userRecipeArray: DocumentData[] = []
 
   requestedRecipeData: DocumentData = []
   @Prop() singularRecipeID!: string
@@ -88,7 +90,21 @@ export default class Homepage extends Vue {
       setDoc(recipe, {category: this.requestedRecipeData[0], description: this.requestedRecipeData[1], feeds: this.requestedRecipeData[2],
         id: this.requestedRecipeData[3], ingredients: this.requestedRecipeData[4], instructions: this.requestedRecipeData[5],
         name: this.requestedRecipeData[6], picture: this.requestedRecipeData[7], prepTime: this.requestedRecipeData[8]})
+
+      //push the id to the local array so the button changes to remove from favorites
+      let recipes:CollectionReference
+      recipes = collection(myDB, 'userSaves', 'users', uid)
+      getDocs(recipes).then((qs: QuerySnapshot) => {
+        qs.forEach((qd: QueryDocumentSnapshot) => {
+          this.userRecipeArray.push(qd.data().id)
+        });
+      });  
     }
+  }
+
+  removeRecipeFromUserFolder(): void{
+    //insert logic to remove element from user database
+    
   }
 
   mounted(): void {
@@ -102,10 +118,21 @@ export default class Homepage extends Vue {
     else{
       //user is logged in
       this.loggedin = true
+
+      //this logic is for checking the users recipes to determine whether
+      //to display the add to favorites button or remove from favorites button
+      //grab users data
+      //get collection reference and add recipes to the array
+      let recipes:CollectionReference
+      recipes = collection(myDB, 'userSaves', 'users', uid)
+      getDocs(recipes).then((qs: QuerySnapshot) => {
+        qs.forEach((qd: QueryDocumentSnapshot) => {
+          this.userRecipeArray.push(qd.data().id)
+        });
+      });  
     }
 
     //retrieve the recipe from the database
-    
     let recipes:CollectionReference
     recipes = collection(myDB, 'recipes')
     var requestedRecipeReference = doc( myDB, 'recipes', this.singularRecipeID )
