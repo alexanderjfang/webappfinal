@@ -14,7 +14,7 @@
       <img :src = this.requestedRecipeData[7] width=250px>
       <div id="meta">
         <button v-if="!(this.userRecipeArray.indexOf(this.singularRecipeID) > -1)" @click="saveRecipeToUserFolder">Add to favorites</button>
-        <button v-if="(this.userRecipeArray.indexOf(this.singularRecipeID) > -1)" @click="removeRecipeFromUserFolder">Remove from favorites</button>
+        <button v-if="(this.userRecipeArray.indexOf(this.singularRecipeID) > -1)" @click="reloadArray">Remove from favorites</button>
         <p>{{requestedRecipeData[0]}} • feeds: {{requestedRecipeData[2]}}</p>
         <br>
           <div id="meta2">
@@ -40,7 +40,7 @@ import {
   signOut,
   User,
 } from "firebase/auth";
-import { collection, CollectionReference, doc, DocumentData, DocumentReference, Firestore, getDoc, getDocs, getFirestore, QueryDocumentSnapshot, QuerySnapshot, setDoc } from 'firebase/firestore';
+import { collection, CollectionReference, deleteDoc, doc, DocumentData, DocumentReference, Firestore, getDoc, getDocs, getFirestore, QueryDocumentSnapshot, QuerySnapshot, setDoc } from 'firebase/firestore';
 import { firebaseConfig } from '@/myconfig';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 
@@ -102,9 +102,29 @@ export default class Homepage extends Vue {
     }
   }
 
-  removeRecipeFromUserFolder(): void{
+  async removeRecipeFromUserFolder(){
     //insert logic to remove element from user database
-    
+    this.auth = getAuth();
+    const user = this.auth.currentUser as User;
+    const uid: string = this.auth.currentUser?.uid as string;
+    const d1: DocumentReference = doc(myDB, "userSaves", "users", uid, this.singularRecipeID)
+    //d1.doc(this.singularRecipeID).delete()
+    deleteDoc(d1)
+  }
+
+  async reloadArray(){
+    await this.removeRecipeFromUserFolder()
+    this.auth = getAuth();
+    const user = this.auth.currentUser as User;
+    const uid: string = this.auth.currentUser?.uid as string;
+    this.userRecipeArray = []
+    let recipes:CollectionReference
+    recipes = collection(myDB, 'userSaves', 'users', uid)
+    getDocs(recipes).then((qs: QuerySnapshot) => {
+      qs.forEach((qd: QueryDocumentSnapshot) => {
+        this.userRecipeArray.push(qd.data().id)
+      });
+    });  
   }
 
   mounted(): void {
