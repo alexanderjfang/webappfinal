@@ -86,7 +86,7 @@ export default class Homepage extends Vue {
     }
     else{
       const userFolder: DocumentReference = doc(myDB, 'userSaves/users')
-      const recipe: DocumentReference = doc(myDB, "userSaves", "users", uid, this.requestedRecipeData[6])
+      const recipe: DocumentReference = doc(myDB, "userSaves", "users", uid, this.requestedRecipeData[3])
       setDoc(recipe, {category: this.requestedRecipeData[0], description: this.requestedRecipeData[1], feeds: this.requestedRecipeData[2],
         id: this.requestedRecipeData[3], ingredients: this.requestedRecipeData[4], instructions: this.requestedRecipeData[5],
         name: this.requestedRecipeData[6], picture: this.requestedRecipeData[7], prepTime: this.requestedRecipeData[8]})
@@ -105,23 +105,30 @@ export default class Homepage extends Vue {
   async removeRecipeFromUserFolder(){
     //insert logic to remove element from user database
     this.auth = getAuth();
-    const user = this.auth.currentUser as User;
+    //const user = this.auth.currentUser as User;
     const uid: string = this.auth.currentUser?.uid as string;
     const d1: DocumentReference = doc(myDB, "userSaves", "users", uid, this.singularRecipeID)
-    //d1.doc(this.singularRecipeID).delete()
     deleteDoc(d1)
+    this.userRecipeArray = []
+  }
+
+  async clearArray(){
+    await this.removeRecipeFromUserFolder()
+    //this.auth = getAuth();
+    //const user = this.auth.currentUser as User;
+    //const uid: string = this.auth.currentUser?.uid as string;
+    
   }
 
   async reloadArray(){
-    await this.removeRecipeFromUserFolder()
+    await this.clearArray()
     this.auth = getAuth();
-    const user = this.auth.currentUser as User;
+    //const user = this.auth.currentUser as User;
     const uid: string = this.auth.currentUser?.uid as string;
-    this.userRecipeArray = []
     let recipes:CollectionReference
     recipes = collection(myDB, 'userSaves', 'users', uid)
     getDocs(recipes).then((qs: QuerySnapshot) => {
-      qs.forEach((qd: QueryDocumentSnapshot) => {
+     qs.forEach((qd: QueryDocumentSnapshot) => {
         this.userRecipeArray.push(qd.data().id)
       });
     });  
