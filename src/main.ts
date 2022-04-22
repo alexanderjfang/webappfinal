@@ -5,7 +5,6 @@ import Homepage from './views/Homepage.vue'
 import Login from './views/Login.vue'
 import AllRecipes from './views/AllRecipes.vue'
 import Favorites from './views/Favorites.vue'
-import SingularRecipe from './views/SingularRecipe.vue'
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./myconfig";
 Vue.config.productionTip = false;
@@ -16,8 +15,7 @@ const myRouteArr: Array<RouteConfig> = [
   {name:"le Home Page", path: "/", component: Homepage},
   {name:"le Login Page", path: "/login", component: Login},
   {name:"le All Recipes Page", path: "/allrecipes", component: AllRecipes},
-  {name:"le Favorites Page", path: "/favorites", component: Favorites},
-  {name:"le Singular Recipe Page", path: "/singular/:singularRecipeID", component: SingularRecipe, props: true}
+  {name:"le Favorites Page", path: "/favorites", component: Favorites}
 ]
 
 const myRouter = new VueRouter({routes: myRouteArr})

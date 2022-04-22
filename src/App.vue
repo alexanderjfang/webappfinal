@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <br>
-    <br>
+    <h1>This is a header</h1>
     <router-view></router-view>
+    <h1>This is the header after the router-view</h1>
   </div>
 </template>
 
