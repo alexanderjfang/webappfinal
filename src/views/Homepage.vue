@@ -88,8 +88,6 @@ export default class Homepage extends Vue {
   text-decoration: none;
 }
 
-
-
 #login {
   float: right;
 }
