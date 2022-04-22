@@ -1,13 +1,10 @@
 <template>
   <div class="home">
-    <div class="navbar">
-      <a @click="homepage">Home</a>      
-      <a @click="allrecipes">All Recipes</a>
-      <a @click="favorites">Favorite Recipes</a>  
-      <!-- <a2 id="title"> RandomRecipe </a2> -->
-      <a id="login" @click="login">Login</a>
-    </div>  
     <h1>Welcome to Login Page</h1>
+    <button @click="homepage">Home Page</button>
+    <button @click="login">Login Page</button>
+    <button @click="allrecipes">All Recipes Page</button>
+    <button @click="favorites">Favorite Recipes Page</button>
   </div>
 </template>
 
@@ -33,42 +30,4 @@ export default class Homepage extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.navbar {
-  overflow: hidden;
-  background-color: #333;
-  position: fixed; /* Set the navbar to fixed position */
-  top: 0; /* Position the navbar at the top of the page */
-  width: 100%; /* Full width */
-}
-
-/* Links inside the navbar */
-.navbar a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 16px 16px;
-  text-decoration: none;
-}
-.navbar a2 {
-  float: center;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  font-size: 30px;
-  padding: 8px 8px;
-  text-decoration: none;
-}
-
-
-
-#login {
-  float: right;
-}
-
-/* Change background on mouse-over */
-.navbar a:hover {
-  background: #ddd;
-  color: black;
-}
 </style>
