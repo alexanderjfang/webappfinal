@@ -9,7 +9,7 @@
       <a v-if="loggedin" id="login" @click="logout">Logout</a>
     </div>  
     <div class="main">
-      <h1>Welcome to RandomRecipe</h1>
+      <h1 class="title">Welcome to RandomRecipe</h1>
       <a>RandomRecipe helps take the decision making out of mealtime.  Use our
         page to find tasty, healthy, and easy to make recipies in no time.
         Our Random button will pick from any recipe on our list to get
@@ -21,6 +21,10 @@
         <button @click="getRandom"> GET RANDOM!!!</button>
         <!-- CITATION: <h2>https://www.w3schools.com/howto/howto_css_fixed_menu.asp should be cited</h2>-->
 
+    </div>
+    <div class = "navbarbottom">
+      <bot @click="contactUs">Contact us</bot>
+      <bot @click="aboutUs">About us</bot>
     </div>
   </div>
 </template>
@@ -44,6 +48,9 @@ export default class Homepage extends Vue {
   }
   favorites(): void{
     this.$router.push({path: '/favorites'})
+  }
+  aboutUs(): void{
+    this.$router.push({path: '/aboutUs'})
   }
   //LOGOUT LOGIC
   logout(): void {
@@ -75,7 +82,7 @@ export default class Homepage extends Vue {
 <style scoped>
 .navbar {
   overflow: hidden;
-  background-color: #333;
+  background-color: rgb(46, 93, 146);
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
@@ -106,6 +113,29 @@ export default class Homepage extends Vue {
 }
 /* Change background on mouse-over */
 .navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+h1 {
+  font-style: oblique;
+}
+.navbarbottom bot {
+  overflow: hidden;
+  background-color: rgb(46, 93, 146);
+  position: fixed; /* Set the navbar to fixed position */
+  bottom: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+}
+.navbarbottom {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  font-size: 30px;
+  padding: 8px 8px;
+  text-decoration: none;
+}
+.navbarbottom bot:hover {
   background: #ddd;
   color: black;
 }
