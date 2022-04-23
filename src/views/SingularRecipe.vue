@@ -20,7 +20,7 @@
           <div id="meta2">
             <img src = "http://www.clipartsuggest.com/images/364/orologio-clock-alarm-icon-coloring-book-colouring-coloring-book-9HZUv4-clipart.png" width=25px height=25px>
             <p>{{requestedRecipeData[8]}}</p>
-          </div>
+          </div>          
       </div>
     </div>
     <h2>{{this.requestedRecipeData[6]}}</h2>
@@ -29,6 +29,7 @@
     <p>{{this.requestedRecipeData[4]}}</p>
     <h2>Instructions</h2>
     <p>{{this.requestedRecipeData[5]}}</p>
+    <div>Favorited by {{requestedRecipeData[9]}} people</div>
   </div>
 </template>
 
@@ -40,11 +41,12 @@ import {
   signOut,
   User,
 } from "firebase/auth";
-import { collection, CollectionReference, deleteDoc, doc, DocumentData, DocumentReference, Firestore, getDoc, getDocs, getFirestore, QueryDocumentSnapshot, QuerySnapshot, setDoc } from 'firebase/firestore';
+import { collection, CollectionReference, deleteDoc, doc, DocumentData, DocumentReference, Firestore, getDoc, getDocs, getFirestore, QueryDocumentSnapshot, QuerySnapshot, setDoc, updateDoc } from 'firebase/firestore';
 import { firebaseConfig } from '@/myconfig';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 const myApp:FirebaseApp = initializeApp(firebaseConfig);
 const myDB:Firestore = getFirestore(myApp);
+let timesFavorited: number;  
 @Component
 export default class Homepage extends Vue {
   //LOGOUT LOGIC
@@ -53,7 +55,7 @@ export default class Homepage extends Vue {
   userRecipeArray: DocumentData[] = []
   requestedRecipeData: DocumentData = []
   @Prop() singularRecipeID!: string
-  
+
   homepage(): void{
     this.$router.replace({path: '/'})
   }
@@ -92,7 +94,14 @@ export default class Homepage extends Vue {
         qs.forEach((qd: QueryDocumentSnapshot) => {
           this.userRecipeArray.push(qd.data().id)
         });
-      });  
+      });
+    var requestedRecipeReference = doc( myDB, 'recipes', this.singularRecipeID )
+    var requestedRecipe = getDoc(requestedRecipeReference).then((results) => {
+      timesFavorited=results.data()?.favorited
+      const doc1: DocumentReference = doc(myDB, 'recipes', this.singularRecipeID);
+      let numb = 1 + timesFavorited;
+      updateDoc(doc1, {favorited:numb});
+      })  
     }
   }
   async removeRecipeFromUserFolder(){
@@ -103,6 +112,13 @@ export default class Homepage extends Vue {
     const d1: DocumentReference = doc(myDB, "userSaves", "users", uid, this.singularRecipeID)
     deleteDoc(d1)
     this.userRecipeArray = []
+    var requestedRecipeReference = doc( myDB, 'recipes', this.singularRecipeID )
+    var requestedRecipe = getDoc(requestedRecipeReference).then((results) => {
+      timesFavorited=results.data()?.favorited
+      const doc1: DocumentReference = doc(myDB, 'recipes', this.singularRecipeID);
+      let numb = -1 + timesFavorited;
+      updateDoc(doc1, {favorited:numb});
+      })  
   }
   async clearArray(){
     await this.removeRecipeFromUserFolder()
@@ -161,6 +177,7 @@ export default class Homepage extends Vue {
       this.requestedRecipeData.push(results.data()?.name)
       this.requestedRecipeData.push(results.data()?.picture)
       this.requestedRecipeData.push(results.data()?.prepTime)
+      this.requestedRecipeData.push(results.data()?.favorited)
       })
       /*
       requestedRecipeData[0] = category
