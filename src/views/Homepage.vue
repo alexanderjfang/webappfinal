@@ -18,7 +18,7 @@
         can select our All Recipes page to browse our entire selection of
         top quality recipes.</a>
         <div />
-        <button> GET RANDOM!!!</button>
+        <button @click="getRandom"> GET RANDOM!!!</button>
         <!-- CITATION: <h2>https://www.w3schools.com/howto/howto_css_fixed_menu.asp should be cited</h2>-->
 
     </div>
@@ -63,6 +63,11 @@ export default class Homepage extends Vue {
       //user is logged in
       this.loggedin = true
     }
+  }
+  getRandom(): void{
+    let foods: string[] = ['appleSauce', 'clamChowder', 'roastedChicken', 'toast'];
+    let string: "singularRecipeID:";
+    this.$router.push({name: "le Singular Recipe Page", params: {singularRecipeID:(foods[Math.floor(Math.random() * 4)])}})
   }
 }
 </script>
