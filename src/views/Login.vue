@@ -8,30 +8,34 @@
       <a v-if="!loggedin" id="login" @click="login">Login</a>
       <a v-if="loggedin" id="login" @click="logout">Logout</a>
     </div>  
-    <h1>Signup or login now to save some recipes</h1>
+    <h1>Sign up or log in now to save recipes</h1>
     <!--Login section below-->
     <section>
       <div id="loginpanel">
         <input type="text" v-model="u_email"
           placeholder="Enter your email">
         <div />
+        <br>
         <input type="password" v-model="u_pass"
           placeholder="Enter your password">
         <br>
         <br>
         <div id="loginByEmail">
-          <button :disabled="!isValidInput"
-            @click="createAccount">Signup</button>
-          <button :disabled="!isValidInput"
+          <button id="signup" :disabled="!isValidInput"
+            @click="createAccount">Sign Up</button>
+          <button id="email" :disabled="!isValidInput"
             @click="withEmail">Login</button>
+          <br>
         </div>
-        <button :disabled="u_email.length === 0" @click="resetPass">Reset
-            Password</button>
+        <br>
+        <div id="withProvider">
+          <button id="gmail" @click="withGMail">Google Login</button>
+        </div>
         <div>
         </div>
-        <div id="withProvider">
-          <button @click="withGMail">Google</button>
-        </div>
+        <br>
+        <button id="reset" :disabled="u_email.length === 0" @click="resetPass">Reset
+            Password</button>
       </div>
     </section>
     <span id="msgbox" v-show="message.length > 0">{{message}}</span>
@@ -212,16 +216,17 @@ export default class Homepage extends Vue {
 section{
   margin-left: auto;
   margin-right: auto;
-  background: darkgray;
   width: fit-content;
   align-self: center;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
-  outline-color: black;
+  outline-color: rgb(46, 93, 146);
   outline-width: 2px;
   outline-style: solid;
+  background-color:rgb(226, 226, 226);
+  border-radius: 5px;
 }
 .navbarbottom {
   overflow: hidden;
@@ -241,5 +246,25 @@ section{
 .navbarbottom a:hover {
   background: #ddd;
   color: black;
+}
+button{
+  border-color: rgb(46, 93, 146);
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border-radius: 3px;
+}
+#signup{
+  width: 45%;
+  float: left;
+}
+#gmail{
+  width:100%;
+}
+#email{
+  width:45%;
+  float: right;
+}
+#reset{
+ width: 100%;
 }
 </style>

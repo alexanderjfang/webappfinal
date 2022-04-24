@@ -1,5 +1,5 @@
 <template>
-  <div class = "home">
+  <div class = "about">
     <div class="navbar">
       <a @click="homepage">Home</a>      
       <a @click="allrecipes">All Recipes</a>
@@ -10,10 +10,12 @@
     </div>  
     <div class="main">
       <h1 class="title">About Us</h1>
-      <p>Alex Fang, Ben Burkholder, and Jay Aubry are amature cooks trying to make mealtime easier for everyone.  We think that simple, easy to make recipes should be available in one place without exessive ads or irrelevent backstories.  We are always interested in improving our site, if you have any recipes to add or suggestions please visit our <a @click="contactUs" style="color:blue;text-decoration:underline;cursor:pointer">Contact Us</a> page.</p> 
+      <p>Alex Fang, Ben Burkholder, and Jay Aubry are amateur cooks trying to make mealtime easier for everyone.  We think that simple, easy to make recipes should be available in one place without excessive ads and irrelevant backstories.  We are always interested in improving our site, if you have any recipes to add or suggestions please visit our <a @click="contactUs" style="color:blue;text-decoration:underline;cursor:pointer">Contact Us</a> page.</p> 
       <br>
-      <p>We are busy GVSU students trying to help out our fellow man.  Hopefully you enjoy the site and find some good recipies</p>
-      <img src="https://cdn.discordapp.com/attachments/943889055165345926/967827524237267024/unknown.png">
+      <p>We are busy GVSU students trying to help out our fellow man.  Hopefully you enjoy the site and find some good recipes.</p>
+      <br>
+      <br>
+      <img id="us" src="https://cdn.discordapp.com/attachments/943889055165345926/967827524237267024/unknown.png">
       <img id="gvlogo" src="https://images-ext-2.discordapp.net/external/PDu7hfOtbas13nfOyg2kJU7ZGpdOLpGD7xaaNRlzraM/https/upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Grand_Valley_State_Lakers_logo.svg/1200px-Grand_Valley_State_Lakers_logo.svg.png">
     </div>
     <div class = "navbarbottom">
@@ -57,8 +59,6 @@ export default class AboutUs extends Vue {
   }
   mounted():void{
     //LOGOUT LOGIC
-    
-
     this.auth = getAuth();
     const user = this.auth.currentUser as User;
     const uid: string = this.auth.currentUser?.uid as string;
@@ -82,7 +82,7 @@ export default class AboutUs extends Vue {
   width: 100%; /* Full width */
 }
 /* Links inside the navbar */
-.home > * {
+.about > * {
   text-align: center;
 }
 .navbar a {
@@ -139,5 +139,9 @@ p {
 #gvlogo {
   width: 13%;
   height: 13%;
+}
+#us{
+  border-style:solid;
+  border-color: rgb(46, 93, 146);
 }
 </style>

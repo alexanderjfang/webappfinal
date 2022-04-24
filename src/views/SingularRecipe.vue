@@ -11,10 +11,11 @@
     <!--recipe data displayed below-->
     <br>
     <div id="picandmeta">
-      <img :src = this.requestedRecipeData[7] width=250px>
+      <img id="food" :src = this.requestedRecipeData[7] width=250px>
       <div id="meta">
         <button v-if="!(this.userRecipeArray.indexOf(this.singularRecipeID) > -1)" @click="saveRecipeToUserFolder">Add to favorites</button>
         <button v-if="(this.userRecipeArray.indexOf(this.singularRecipeID) > -1)" @click="reloadArray">Remove from favorites</button>
+        <p v-bind="{toString: () => this.timesFavorited}">Favorited by {{this.timesFavorited}} people</p>
         <p>{{requestedRecipeData[0]}} • feeds: {{requestedRecipeData[2]}}</p>
         <br>
           <div id="meta2">
@@ -25,11 +26,10 @@
     </div>
     <h2>{{this.requestedRecipeData[6]}}</h2>
     <p>{{this.requestedRecipeData[1]}}</p>
-    <h2>Ingredients</h2>
+    <h3>Ingredients</h3>
     <p>{{this.requestedRecipeData[4]}}</p>
-    <h2>Instructions</h2>
+    <h3>Instructions</h3>
     <p>{{this.requestedRecipeData[5]}}</p>
-    <div v-bind="{toString: () => this.timesFavorited}">Favorited by {{this.timesFavorited}} people</div>
     <div class = "navbarbottom">
       <a @click="contactUs">Contact Us</a>
       <a @click="aboutUs">About us</a>
@@ -259,10 +259,12 @@ export default class Homepage extends Vue {
 #meta {
   /* Needs to be adjusted because small screens cause overlap */
   margin-top: auto;
-  flex: 0 1 auto;
+  /*flex: 0 1 auto;*/
   position: relative;
   left: 50%;
-  transform: translateX(-100%);
+  transform: translateX(-100px);
+  text-align: left;
+  width: 200px;
 }
 #meta2{
   display: flex;
@@ -296,5 +298,15 @@ export default class Homepage extends Vue {
 .navbarbottom a:hover {
   background: #ddd;
   color: black;
+}
+button{
+  border-color: rgb(46, 93, 146);
+  background-color: rgb(226, 226, 226);
+  color: black;
+  border-radius: 25px;
+}
+#food{
+  border-style: solid;
+  border-color: rgb(46, 93, 146);
 }
 </style>

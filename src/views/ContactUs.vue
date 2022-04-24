@@ -1,5 +1,5 @@
 <template>
-  <div class = "home">
+  <div class = "contact">
     <div class="navbar">
       <a @click="homepage">Home</a>      
       <a @click="allrecipes">All Recipes</a>
@@ -10,14 +10,14 @@
     </div>  
     <div class="main">
       <h1 class="title">Contact Us</h1>
-      <p>If you have questions and concerns please reach out to us. We are always looking for ways to improve the RandomRecipe experience.  The following are all ways to provide feedback:</p>
+      <p>If you have questions or concerns please reach out to us. We are always looking for ways to improve the RandomRecipe experience.  The following are all ways to provide feedback:</p>
       <br>
       <p id="address">RandomRecipe<br>123 Main St.<br>Muskegon, MI 49442</p>      
       <p>feedback@RandomRecipe.com</p>
       <p>231-275-1525</p>
       <br>
       <h2>Post a Recipe</h2>
-      <p>Help make the site better by providing your personal recipies.  While we can't promise every submitted recipe will make it on the site, we will evaluate every submission.  We strive to keep the site ballanced so we are especially interested in recipes in the catagories that are underrepresented. </p>
+      <p>Help make the site better by providing your personal recipes.  While we can't promise every submitted recipe will make it on the site, we will evaluate every submission.  We strive to keep the site balanced so we are especially interested in recipes for the categories that are underrepresented. </p>
     </div>
     <div id="chart">
       <canvas id="myChart"></canvas>
@@ -128,7 +128,7 @@ export default class AboutUs extends Vue {
   width: 100%; /* Full width */
 }
 /* Links inside the navbar */
-.home > * {
+.contact > * {
   text-align: center;
 }
 .navbar a {

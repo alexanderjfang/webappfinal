@@ -19,7 +19,7 @@
         <th>Prep Time</th>
       </tr>
       <tr v-for="(u,pos) in recipeArray" :key="pos">
-            <td><a @click="singularrecipe(u.id)"><img :src="u.picture" style="width:200px;cursor:pointer"></a></td>
+            <td><a @click="singularrecipe(u.id)"><img :src="u.picture" style="width:200px;cursor:pointer;height:300px"></a></td>
             <td><a @click="singularrecipe(u.id)" style="color:blue;text-decoration:underline;cursor:pointer">{{u.name}}</a></td>
             <td>{{u.category}}</td>
             <td>{{u.feeds}}</td>
@@ -39,7 +39,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import {FirebaseApp, initializeApp} from 'firebase/app';
-import {getFirestore, QueryDocumentSnapshot, Firestore, getDocs, collection, DocumentReference, doc, CollectionReference, setDoc, QuerySnapshot, deleteDoc, DocumentData} from 'firebase/firestore';
+import {getFirestore, QueryDocumentSnapshot, Firestore, getDocs, collection, CollectionReference, QuerySnapshot, DocumentData} from 'firebase/firestore';
 import { firebaseConfig } from "@/myconfig";
 import {
   Auth,
@@ -156,10 +156,10 @@ th{
   min-width: 200px;
   outline-style: solid;
   outline-width: 2px;
-}
-td{
-  outline-style: solid;
-  outline-width: 2px;
+  outline-color: black;
+  background-color: rgb(46, 93, 146);
+  color:white;
+  text-decoration: none;
 }
 .navbarbottom {
   overflow: hidden;
@@ -179,5 +179,18 @@ td{
 .navbarbottom a:hover {
   background: #ddd;
   color: black;
+}
+td{
+  outline-style: solid;
+  outline-width: 2px;
+  font-size: 20px;
+  width:fit-content;
+  height:fit-content;
+  padding: 0px;
+}
+td img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

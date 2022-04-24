@@ -11,11 +11,11 @@
     <div class="main">
       <h1 class="title">Welcome to RandomRecipe</h1>
       <p>RandomRecipe helps take the decision making out of mealtime.  Use our
-        page to find tasty, healthy, and easy to make recipies in no time.
+        page to find tasty, healthy, and easy to make recipes in no time.
         Our Random button will pick from any recipe on our list to get
         you started.  Then, if you log in, you can save and revisit your
         favorites at any time.  Don't like the randomness, no problem, you
-        can select our All Recipes page to browse our entire selection of
+        can visit our <a @click="allrecipes()" style="color:blue;text-decoration:underline;cursor:pointer">All Recipes</a> page to browse our entire selection of
         top quality recipes.</p>
         <div />
         <br>
@@ -25,7 +25,7 @@
         <br>
         <br>
         <img src="https://s23209.pcdn.co/wp-content/uploads/2019/10/Easy-Clam-ChowderIMG_1064.jpg" @click="goToFeature" width="250px" style="cursor:pointer">
-        <p>Today's Feature: Clam Chowder</p>
+        <p>Today's Feature: <a @click="goToFeature()" style="color:blue;text-decoration:underline;cursor:pointer">Clam Chowder</a></p>
     </div>
     <div class = "navbarbottom">
       <a @click="contactUs">Contact Us</a>
@@ -83,8 +83,8 @@ export default class Homepage extends Vue {
     }
   }
   getRandom(): void{
-    let foods: string[] = ['appleSauce', 'clamChowder', 'roastedChicken', 'toast'];
-    let string: "singularRecipeID:";
+    let foods: string[] = ['appleSauce', 'clamChowder', 'roastedChicken', 'toast', 'popcorn'];
+    //let string: "singularRecipeID:";
     this.$router.push({name: "le Singular Recipe Page", params: {singularRecipeID:(foods[Math.floor(Math.random() * 4)])}})
   }
 }
@@ -127,12 +127,7 @@ export default class Homepage extends Vue {
   background: #ddd;
   color: black;
 }
-h1 {
-  font-style: oblique;
-}
-
 .navbarbottom{
-
   overflow: hidden;
   background-color: rgb(46, 93, 146);
   position: fixed; /* Set the navbar to fixed position */
@@ -151,8 +146,25 @@ h1 {
   background: #ddd;
   color: black;
 }
+h1 {
+  font-style: oblique;
+}
 p {
   padding-left: 25%;
   padding-right: 25%;
+}
+img{
+  border-style: solid;
+  border-color: rgb(46, 93, 146);
+}
+button{
+  border-color: rgb(46, 93, 146);
+  background-color: rgb(226, 226, 226);
+  color: black;
+  border-radius: 25px;
+  width: 200px;
+  height: 50px;
+  font-weight: bold;
+  font-size: 15px;
 }
 </style>
