@@ -16,8 +16,8 @@
       <a>Jay Aubry: aubryj@mail.gvsu.edu</a>
     </div>
     <div class = "navbarbottom">
-      <bot @click="contactUs">Contact us</bot>
-      <bot @click="aboutUs">About us</bot>
+      <a @click="contactUs">Contact Us</a>
+      <a @click="aboutUs">About Us</a>
     </div>
   </div>
 </template>
@@ -111,22 +111,22 @@ export default class AboutUs extends Vue {
 h1 {
   font-style: oblique;
 }
-.navbarbottom bot {
+.navbarbottom {
   overflow: hidden;
   background-color: rgb(46, 93, 146);
   position: fixed; /* Set the navbar to fixed position */
   bottom: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
 }
-.navbarbottom bot{
-  float: left;
+.navbarbottom a{
+  float: right;
   display: block;
   color: #f2f2f2;
   text-align: center;
   padding: 16px 16px;
   text-decoration: none;
 }
-.navbarbottom bot:hover {
+.navbarbottom a:hover {
   background: #ddd;
   color: black;
 }
