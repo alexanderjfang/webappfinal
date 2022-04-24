@@ -86,7 +86,9 @@ export default class AboutUs extends Vue {
                 suggestedMax: 5,
                 ticks: {
                   precision: 0
+
                 }
+
             }
         },
         layout:{

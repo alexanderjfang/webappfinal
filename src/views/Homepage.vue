@@ -130,7 +130,9 @@ export default class Homepage extends Vue {
 h1 {
   font-style: oblique;
 }
+
 .navbarbottom{
+
   overflow: hidden;
   background-color: rgb(46, 93, 146);
   position: fixed; /* Set the navbar to fixed position */
