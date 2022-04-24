@@ -84,6 +84,9 @@ export default class AboutUs extends Vue {
             y: {
                 beginAtZero: true
             }
+        },
+        layout:{
+          padding:250
         }
     }
 });
