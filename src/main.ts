@@ -10,6 +10,7 @@ import AboutUs from './views/AboutUs.vue'
 import ContactUs from './views/ContactUs.vue'
 import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./myconfig";
+import chart from 'chart.js'
 Vue.config.productionTip = false;
 
 Vue.use(VueRouter)
