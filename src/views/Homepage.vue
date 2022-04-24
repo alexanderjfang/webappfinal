@@ -18,9 +18,14 @@
         can select our All Recipes page to browse our entire selection of
         top quality recipes.</a>
         <div />
+        <br>
         <button @click="getRandom"> GET RANDOM!!!</button>
         <!-- CITATION: <h2>https://www.w3schools.com/howto/howto_css_fixed_menu.asp should be cited</h2>-->
-
+        <br>
+        <br>
+        <br>
+        <img src="https://s23209.pcdn.co/wp-content/uploads/2019/10/Easy-Clam-ChowderIMG_1064.jpg" @click="goToFeature" width="250px" style="cursor:pointer">
+        <p>Today's Feature: Clam Chowder</p>
     </div>
     <div class = "navbarbottom">
       <bot @click="contactUs">Contact us</bot>
@@ -54,6 +59,9 @@ export default class Homepage extends Vue {
   }
   contactUs(): void{
     this.$router.push({path: '/contactUs'})
+  }
+  goToFeature(): void{
+    this.$router.push({name: "le Singular Recipe Page", params: {singularRecipeID: "clamChowder"}})
   }
   //LOGOUT LOGIC
   logout(): void {

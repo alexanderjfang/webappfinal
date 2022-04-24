@@ -169,6 +169,7 @@ export default class Homepage extends Vue {
     recipes = collection(myDB, 'recipes')
     var requestedRecipeReference = doc( myDB, 'recipes', this.singularRecipeID )
     var requestedRecipe = getDoc(requestedRecipeReference).then((results) => {
+      this.requestedRecipeData = []
       this.requestedRecipeData.push(results.data()?.category)
       this.requestedRecipeData.push(results.data()?.description)
       this.requestedRecipeData.push(results.data()?.feeds)
@@ -179,6 +180,8 @@ export default class Homepage extends Vue {
       this.requestedRecipeData.push(results.data()?.picture)
       this.requestedRecipeData.push(results.data()?.prepTime)
       this.requestedRecipeData.push(results.data()?.favorited)
+      console.log("recipe data: " + this.requestedRecipeData)
+      console.log("recipe id: " + this.singularRecipeID)
       })
       /*
       requestedRecipeData[0] = category
@@ -190,16 +193,13 @@ export default class Homepage extends Vue {
       requestedRecipeData[6] = name
       requestedRecipeData[7] = picture
       requestedRecipeData[8] = prepTime
-      requestedRecipeData[8] = favorited
+      requestedRecipeData[9] = favorited
       */
 
       //set up listener for the single recipe to update favorited on change
       const mich = doc(myDB, "recipes", this.singularRecipeID);
       onSnapshot(mich, (ds: DocumentSnapshot) => {
-      //this.tim ds.data()
       this.timesFavorited=ds.data()?.favorited
-      this.requestedRecipeData[8] = this.timesFavorited
-      console.log(this.timesFavorited)
   });
   }
 }

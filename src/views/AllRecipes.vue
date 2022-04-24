@@ -19,8 +19,8 @@
         <th>Prep Time</th>
       </tr>
       <tr v-for="(u,pos) in recipeArray" :key="pos">
-            <td><a @click="singularrecipe(u.id)"><img :src="u.picture" style="width:200px"></a></td>
-            <td><a @click="singularrecipe(u.id)" style="color:blue;text-decoration:underline">{{u.name}}</a></td>
+            <td><a @click="singularrecipe(u.id)"><img :src="u.picture" style="width:200px;cursor:pointer"></a></td>
+            <td><a @click="singularrecipe(u.id)" style="color:blue;text-decoration:underline;cursor:pointer">{{u.name}}</a></td>
             <td>{{u.category}}</td>
             <td>{{u.feeds}}</td>
             <td>{{u.prepTime}}</td>
