@@ -52,6 +52,9 @@ export default class Homepage extends Vue {
   aboutUs(): void{
     this.$router.push({path: '/aboutUs'})
   }
+  contactUs(): void{
+    this.$router.push({path: '/contactUs'})
+  }
   //LOGOUT LOGIC
   logout(): void {
     if (this.auth) signOut(this.auth);
@@ -126,13 +129,12 @@ h1 {
   bottom: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
 }
-.navbarbottom {
+.navbarbottom bot{
   float: left;
   display: block;
   color: #f2f2f2;
   text-align: center;
-  font-size: 30px;
-  padding: 8px 8px;
+  padding: 16px 16px;
   text-decoration: none;
 }
 .navbarbottom bot:hover {
