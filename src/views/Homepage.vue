@@ -28,8 +28,8 @@
         <p>Today's Feature: Clam Chowder</p>
     </div>
     <div class = "navbarbottom">
-      <a @click="contactUs">Contact us</a>
-      <a @click="aboutUs">About us</a>
+      <a @click="contactUs">Contact Us</a>
+      <a @click="aboutUs">About Us</a>
     </div>
   </div>
 </template>
@@ -130,7 +130,9 @@ export default class Homepage extends Vue {
 h1 {
   font-style: oblique;
 }
-.navbarbottom {
+
+.navbarbottom{
+
   overflow: hidden;
   background-color: rgb(46, 93, 146);
   position: fixed; /* Set the navbar to fixed position */

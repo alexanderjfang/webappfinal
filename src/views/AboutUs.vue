@@ -16,8 +16,8 @@
       <canvas id="myChart"></canvas>
     </div>
     <div class = "navbarbottom">
-      <a @click="contactUs">Contact us</a>
-      <a @click="aboutUs">About us</a>
+      <a @click="contactUs">Contact Us</a>
+      <a @click="aboutUs">About Us</a>
     </div>
   </div>
 </template>
@@ -86,7 +86,9 @@ export default class AboutUs extends Vue {
                 suggestedMax: 5,
                 ticks: {
                   precision: 0
-                }                
+
+                }
+
             }
         },
         layout:{
@@ -149,7 +151,7 @@ export default class AboutUs extends Vue {
 h1 {
   font-style: oblique;
 }
-.navbarbottom a {
+.navbarbottom {
   overflow: hidden;
   background-color: rgb(46, 93, 146);
   position: fixed; /* Set the navbar to fixed position */
@@ -157,7 +159,7 @@ h1 {
   width: 100%; /* Full width */
 }
 .navbarbottom a{
-  float: left;
+  float: right;
   display: block;
   color: #f2f2f2;
   text-align: center;

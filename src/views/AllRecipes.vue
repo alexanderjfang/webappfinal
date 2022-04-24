@@ -26,6 +26,10 @@
             <td>{{u.prepTime}}</td>
         </tr>
     </table>
+    <div class = "navbarbottom">
+      <a @click="contactUs">Contact Us</a>
+      <a @click="aboutUs">About Us</a>
+    </div>
   </div>
 </template>
 
@@ -64,6 +68,12 @@ export default class Homepage extends Vue {
   singularrecipe(recipeID: string): void{
     this.$router.push({name: "le Singular Recipe Page", params: {singularRecipeID:recipeID}})
   }
+  aboutUs(): void{
+    this.$router.push({path: '/aboutUs'})
+  }
+  contactUs(): void{
+    this.$router.push({path: '/contactUs'})
+  }
   //LOGOUT LOGIC
   logout(): void {
     if (this.auth) signOut(this.auth);
@@ -101,12 +111,15 @@ export default class Homepage extends Vue {
 }
 .navbar {
   overflow: hidden;
-  background-color: #333;
+  background-color: rgb(46, 93, 146);
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
 }
 /* Links inside the navbar */
+.home > * {
+  text-align: center;
+}
 .navbar a {
   float: left;
   display: block;
@@ -144,5 +157,24 @@ th{
 td{
   outline-style: solid;
   outline-width: 2px;
+}
+.navbarbottom {
+  overflow: hidden;
+  background-color: rgb(46, 93, 146);
+  position: fixed; /* Set the navbar to fixed position */
+  bottom: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+}
+.navbarbottom a{
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 16px 16px;
+  text-decoration: none;
+}
+.navbarbottom a:hover {
+  background: #ddd;
+  color: black;
 }
 </style>
