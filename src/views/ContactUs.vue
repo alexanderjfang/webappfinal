@@ -10,26 +10,16 @@
     </div>  
     <div class="main">
       <h1 class="title">Contact Us</h1>
-      <a>If you have questions and concerns please reach out to us. We are always looking for ways to improve the RandomRecipe experience.  The following are all ways to provide feedback:</a>
+      <p>If you have questions and concerns please reach out to us. We are always looking for ways to improve the RandomRecipe experience.  The following are all ways to provide feedback:</p>
       <br>
-      <br>
-      <a>RandomRecipe</a>
-      <br>
-      <a>123 Main St.</a>
-      <br>
-      <a>Muskegon, MI 49442</a>
-      <br>
-      <br>
-      <a>feedback@RandomRecipe.com</a>
-      <br>
-      <br>
-      <a>231-275-1525</a>
-      <br>
+      <p id="address">RandomRecipe<br>123 Main St.<br>Muskegon, MI 49442</p>      
+      <p>feedback@RandomRecipe.com</p>
+      <p>231-275-1525</p>
       <br>
       <h2>Post a Recipe</h2>
-      <a>Help make the site better by providing your personal recipies.  While we can't promise every submitted recipe will make it on the site, we will evaluate every submission.  We strive to keep the site ballanced so we are especially interested in recipes in the catagories that are underrepresented. </a>
+      <p>Help make the site better by providing your personal recipies.  While we can't promise every submitted recipe will make it on the site, we will evaluate every submission.  We strive to keep the site ballanced so we are especially interested in recipes in the catagories that are underrepresented. </p>
     </div>
-    <div style="height: 30px">
+    <div id="chart">
       <canvas id="myChart"></canvas>
     </div>
     <div class = "navbarbottom">
@@ -108,9 +98,10 @@ export default class AboutUs extends Vue {
 
             }
         },
-        layout:{
-          padding:250
-        }
+        maintainAspectRatio:false,
+        // layout:{
+        //   padding:250
+        // }
     }
 });
     this.auth = getAuth();
@@ -186,5 +177,20 @@ h1 {
 .navbarbottom a:hover {
   background: #ddd;
   color: black;
+}
+p {
+  padding-left: 25%;
+  padding-right: 25%;
+}
+#address p {
+  padding: 0%;
+  margin:0px;
+  line-height: .75em;
+}
+#chart {
+  height: 50%;
+  width: 50%;
+  margin: 0 auto;
+
 }
 </style>

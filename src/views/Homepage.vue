@@ -10,13 +10,13 @@
     </div>  
     <div class="main">
       <h1 class="title">Welcome to RandomRecipe</h1>
-      <a>RandomRecipe helps take the decision making out of mealtime.  Use our
+      <p>RandomRecipe helps take the decision making out of mealtime.  Use our
         page to find tasty, healthy, and easy to make recipies in no time.
         Our Random button will pick from any recipe on our list to get
         you started.  Then, if you log in, you can save and revisit your
         favorites at any time.  Don't like the randomness, no problem, you
         can select our All Recipes page to browse our entire selection of
-        top quality recipes.</a>
+        top quality recipes.</p>
         <div />
         <br>
         <button @click="getRandom"> GET RANDOM!!!</button>
@@ -150,5 +150,9 @@ h1 {
 .navbarbottom a:hover {
   background: #ddd;
   color: black;
+}
+p {
+  padding-left: 25%;
+  padding-right: 25%;
 }
 </style>

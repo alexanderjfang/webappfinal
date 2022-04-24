@@ -10,8 +10,12 @@
     </div>  
     <div class="main">
       <h1 class="title">About Us</h1>
-      <a>Alex Fang, Ben Burkholder, and Jay Aubry are amature cooks trying to make mealtime easier for everyone.  We think that simple, easy to make recipes should be available in one place without exessive ads or irrelevent backstories.  We are always interested in improving our site, if you have any recipes to add or suggestions please visit our Contact Us page.</a>      
-    </div>    
+      <p>Alex Fang, Ben Burkholder, and Jay Aubry are amature cooks trying to make mealtime easier for everyone.  We think that simple, easy to make recipes should be available in one place without exessive ads or irrelevent backstories.  We are always interested in improving our site, if you have any recipes to add or suggestions please visit our <a @click="contactUs" style="color:blue;text-decoration:underline;cursor:pointer">Contact Us</a> page.</p> 
+      <br>
+      <p>We are busy GVSU students trying to help out our fellow man.  Hopefully you enjoy the site and find some good recipies</p>
+      <img src="https://cdn.discordapp.com/attachments/943889055165345926/967827524237267024/unknown.png">
+      <img id="gvlogo" src="https://images-ext-2.discordapp.net/external/PDu7hfOtbas13nfOyg2kJU7ZGpdOLpGD7xaaNRlzraM/https/upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Grand_Valley_State_Lakers_logo.svg/1200px-Grand_Valley_State_Lakers_logo.svg.png">
+    </div>
     <div class = "navbarbottom">
       <a @click="contactUs">Contact Us</a>
       <a @click="aboutUs">About Us</a>
@@ -127,5 +131,13 @@ h1 {
 .navbarbottom a:hover {
   background: #ddd;
   color: black;
+}
+p {
+  padding-left: 25%;
+  padding-right: 25%;
+}
+#gvlogo {
+  width: 13%;
+  height: 13%;
 }
 </style>
