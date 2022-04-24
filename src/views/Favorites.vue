@@ -27,6 +27,9 @@
             <td>{{u.prepTime}}</td>
         </tr>
     </table>
+    <br>
+    <br>
+    <br>
     <div class = "navbarbottom">
       <a @click="contactUs">Contact Us</a>
       <a @click="aboutUs">About Us</a>

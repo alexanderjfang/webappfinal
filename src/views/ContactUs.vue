@@ -10,10 +10,27 @@
     </div>  
     <div class="main">
       <h1 class="title">Contact Us</h1>
-      <a>Questions and concerns can be directed to the author emails:</a>
-      <a>Benjamin Burkholder: </a>
-      <a>Alexander Fang: </a>
-      <a>Jay Aubry: aubryj@mail.gvsu.edu</a>
+      <a>If you have questions and concerns please reach out to us. We are always looking for ways to improve the RandomRecipe experience.  The following are all ways to provide feedback:</a>
+      <br>
+      <br>
+      <a>RandomRecipe</a>
+      <br>
+      <a>123 Main St.</a>
+      <br>
+      <a>Muskegon, MI 49442</a>
+      <br>
+      <br>
+      <a>feedback@RandomRecipe.com</a>
+      <br>
+      <br>
+      <a>231-275-1525</a>
+      <br>
+      <br>
+      <h2>Post a Recipe</h2>
+      <a>Help make the site better by providing your personal recipies.  While we can't promise every submitted recipe will make it on the site, we will evaluate every submission.  We strive to keep the site ballanced so we are especially interested in recipes in the catagories that are underrepresented. </a>
+    </div>
+    <div style="height: 30px">
+      <canvas id="myChart"></canvas>
     </div>
     <div class = "navbarbottom">
       <a @click="contactUs">Contact Us</a>
@@ -25,6 +42,7 @@
 <script lang="ts">
 import { signOut, getAuth, User, Auth } from 'firebase/auth';
 import { Component, Vue } from 'vue-property-decorator';
+import Chart from 'chart.js/auto';
 @Component
 export default class AboutUs extends Vue {
   //LOGOUT LOGIC
@@ -56,6 +74,45 @@ export default class AboutUs extends Vue {
   }
   mounted():void{
     //LOGOUT LOGIC
+    const ctx = 'myChart';
+    const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Entree', 'Snack', 'Breakfast'],
+        datasets: [{
+            label: '# of Recipes by Category',
+            data: [2, 2, 1],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)'                
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        // maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                suggestedMax: 5,
+                ticks: {
+                  precision: 0
+
+                }
+
+            }
+        },
+        layout:{
+          padding:250
+        }
+    }
+});
     this.auth = getAuth();
     const user = this.auth.currentUser as User;
     const uid: string = this.auth.currentUser?.uid as string;

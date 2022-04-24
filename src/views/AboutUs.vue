@@ -10,11 +10,8 @@
     </div>  
     <div class="main">
       <h1 class="title">About Us</h1>
-      <a>A couple hungry students who are too indecisive to decide what we want for dinner.</a>      
-    </div>
-    <div style="height: 30px">
-      <canvas id="myChart"></canvas>
-    </div>
+      <a>Alex Fang, Ben Burkholder, and Jay Aubry are amature cooks trying to make mealtime easier for everyone.  We think that simple, easy to make recipes should be available in one place without exessive ads or irrelevent backstories.  We are always interested in improving our site, if you have any recipes to add or suggestions please visit our Contact Us page.</a>      
+    </div>    
     <div class = "navbarbottom">
       <a @click="contactUs">Contact Us</a>
       <a @click="aboutUs">About Us</a>
@@ -25,7 +22,6 @@
 <script lang="ts">
 import { signOut, getAuth, User, Auth } from 'firebase/auth';
 import { Component, Vue } from 'vue-property-decorator';
-import Chart from 'chart.js/auto';
 @Component
 export default class AboutUs extends Vue {
   //LOGOUT LOGIC
@@ -57,45 +53,7 @@ export default class AboutUs extends Vue {
   }
   mounted():void{
     //LOGOUT LOGIC
-    const ctx = 'myChart';
-    const myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Entree', 'Snack', 'Breakfast'],
-        datasets: [{
-            label: '# of Recipes by Category',
-            data: [2, 2, 1],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)'                
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        // maintainAspectRatio: false,
-        scales: {
-            y: {
-                beginAtZero: true,
-                suggestedMax: 5,
-                ticks: {
-                  precision: 0
-
-                }
-
-            }
-        },
-        layout:{
-          padding:250
-        }
-    }
-});
+    
 
     this.auth = getAuth();
     const user = this.auth.currentUser as User;
