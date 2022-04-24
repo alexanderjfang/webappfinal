@@ -10,11 +10,14 @@
     </div>  
     <div class="main">
       <h1 class="title">About Us</h1>
-      <a>A couple hungry students who are too indecisive to decide what we want for dinner.</a>
+      <a>A couple hungry students who are too indecisive to decide what we want for dinner.</a>      
+    </div>
+    <div style="height: 30px">
+      <canvas id="myChart"></canvas>
     </div>
     <div class = "navbarbottom">
-      <bot @click="contactUs">Contact us</bot>
-      <bot @click="aboutUs">About us</bot>
+      <a @click="contactUs">Contact us</a>
+      <a @click="aboutUs">About us</a>
     </div>
   </div>
 </template>
@@ -22,6 +25,7 @@
 <script lang="ts">
 import { signOut, getAuth, User, Auth } from 'firebase/auth';
 import { Component, Vue } from 'vue-property-decorator';
+import Chart from 'chart.js/auto';
 @Component
 export default class AboutUs extends Vue {
   //LOGOUT LOGIC
@@ -53,6 +57,37 @@ export default class AboutUs extends Vue {
   }
   mounted():void{
     //LOGOUT LOGIC
+    const ctx = 'myChart';
+    const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Entree', 'Snack', 'Breakfast'],
+        datasets: [{
+            label: '# of Recipes by Category',
+            data: [2, 2, 1],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)'                
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        // maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
     this.auth = getAuth();
     const user = this.auth.currentUser as User;
     const uid: string = this.auth.currentUser?.uid as string;
@@ -107,14 +142,14 @@ export default class AboutUs extends Vue {
 h1 {
   font-style: oblique;
 }
-.navbarbottom bot {
+.navbarbottom a {
   overflow: hidden;
   background-color: rgb(46, 93, 146);
   position: fixed; /* Set the navbar to fixed position */
   bottom: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
 }
-.navbarbottom bot{
+.navbarbottom a{
   float: left;
   display: block;
   color: #f2f2f2;
@@ -122,7 +157,7 @@ h1 {
   padding: 16px 16px;
   text-decoration: none;
 }
-.navbarbottom bot:hover {
+.navbarbottom a:hover {
   background: #ddd;
   color: black;
 }

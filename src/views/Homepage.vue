@@ -28,8 +28,8 @@
         <p>Today's Feature: Clam Chowder</p>
     </div>
     <div class = "navbarbottom">
-      <bot @click="contactUs">Contact us</bot>
-      <bot @click="aboutUs">About us</bot>
+      <a @click="contactUs">Contact us</a>
+      <a @click="aboutUs">About us</a>
     </div>
   </div>
 </template>
@@ -130,14 +130,14 @@ export default class Homepage extends Vue {
 h1 {
   font-style: oblique;
 }
-.navbarbottom bot {
+.navbarbottom a {
   overflow: hidden;
   background-color: rgb(46, 93, 146);
   position: fixed; /* Set the navbar to fixed position */
   bottom: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
 }
-.navbarbottom bot{
+.navbarbottom a{
   float: left;
   display: block;
   color: #f2f2f2;
@@ -145,7 +145,7 @@ h1 {
   padding: 16px 16px;
   text-decoration: none;
 }
-.navbarbottom bot:hover {
+.navbarbottom a:hover {
   background: #ddd;
   color: black;
 }
