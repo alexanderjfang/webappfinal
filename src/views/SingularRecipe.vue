@@ -29,7 +29,7 @@
     <p>{{this.requestedRecipeData[4]}}</p>
     <h2>Instructions</h2>
     <p>{{this.requestedRecipeData[5]}}</p>
-    <div>Favorited by {{requestedRecipeData[9]}} people</div>
+    <div v-bind="{toString: () => this.timesFavorited}">Favorited by {{this.timesFavorited}} people</div>
   </div>
 </template>
 
@@ -41,12 +41,12 @@ import {
   signOut,
   User,
 } from "firebase/auth";
-import { collection, CollectionReference, deleteDoc, doc, DocumentData, DocumentReference, Firestore, getDoc, getDocs, getFirestore, QueryDocumentSnapshot, QuerySnapshot, setDoc, updateDoc } from 'firebase/firestore';
+import { collection, CollectionReference, deleteDoc, doc, DocumentData, DocumentReference, DocumentSnapshot, Firestore, getDoc, getDocs, getFirestore, onSnapshot, QueryDocumentSnapshot, QuerySnapshot, setDoc, updateDoc } from 'firebase/firestore';
 import { firebaseConfig } from '@/myconfig';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 const myApp:FirebaseApp = initializeApp(firebaseConfig);
 const myDB:Firestore = getFirestore(myApp);
-let timesFavorited: number;  
+  
 @Component
 export default class Homepage extends Vue {
   //LOGOUT LOGIC
@@ -54,6 +54,7 @@ export default class Homepage extends Vue {
   loggedin = false;
   userRecipeArray: DocumentData[] = []
   requestedRecipeData: DocumentData = []
+  timesFavorited = 0
   @Prop() singularRecipeID!: string
 
   homepage(): void{
@@ -97,9 +98,9 @@ export default class Homepage extends Vue {
       });
     var requestedRecipeReference = doc( myDB, 'recipes', this.singularRecipeID )
     var requestedRecipe = getDoc(requestedRecipeReference).then((results) => {
-      timesFavorited=results.data()?.favorited
+      this.timesFavorited=results.data()?.favorited
       const doc1: DocumentReference = doc(myDB, 'recipes', this.singularRecipeID);
-      let numb = 1 + timesFavorited;
+      let numb = 1 + this.timesFavorited;
       updateDoc(doc1, {favorited:numb});
       })  
     }
@@ -114,9 +115,9 @@ export default class Homepage extends Vue {
     this.userRecipeArray = []
     var requestedRecipeReference = doc( myDB, 'recipes', this.singularRecipeID )
     var requestedRecipe = getDoc(requestedRecipeReference).then((results) => {
-      timesFavorited=results.data()?.favorited
+      this.timesFavorited=results.data()?.favorited
       const doc1: DocumentReference = doc(myDB, 'recipes', this.singularRecipeID);
-      let numb = -1 + timesFavorited;
+      let numb = -1 + this.timesFavorited;
       updateDoc(doc1, {favorited:numb});
       })  
   }
@@ -189,7 +190,17 @@ export default class Homepage extends Vue {
       requestedRecipeData[6] = name
       requestedRecipeData[7] = picture
       requestedRecipeData[8] = prepTime
+      requestedRecipeData[8] = favorited
       */
+
+      //set up listener for the single recipe to update favorited on change
+      const mich = doc(myDB, "recipes", this.singularRecipeID);
+      onSnapshot(mich, (ds: DocumentSnapshot) => {
+      //this.tim ds.data()
+      this.timesFavorited=ds.data()?.favorited
+      this.requestedRecipeData[8] = this.timesFavorited
+      console.log(this.timesFavorited)
+  });
   }
 }
 </script>
