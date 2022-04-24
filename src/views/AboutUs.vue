@@ -82,7 +82,11 @@ export default class AboutUs extends Vue {
         // maintainAspectRatio: false,
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: true,
+                suggestedMax: 5,
+                ticks: {
+                  precision: 0
+                }                
             }
         },
         layout:{
