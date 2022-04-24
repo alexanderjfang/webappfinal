@@ -76,7 +76,7 @@ export default class Homepage extends Vue {
     //console.log("logged out")
   }
   saveRecipeToUserFolder(): void{
-    console.log("saving recipe to your folder")
+    //console.log("saving recipe to your folder")
     const auth = getAuth();
     const uid: string = auth.currentUser?.uid as string;
     if(uid == null){
@@ -180,8 +180,8 @@ export default class Homepage extends Vue {
       this.requestedRecipeData.push(results.data()?.picture)
       this.requestedRecipeData.push(results.data()?.prepTime)
       this.requestedRecipeData.push(results.data()?.favorited)
-      console.log("recipe data: " + this.requestedRecipeData)
-      console.log("recipe id: " + this.singularRecipeID)
+      //console.log("recipe data: " + this.requestedRecipeData)
+      //console.log("recipe id: " + this.singularRecipeID)
       })
       /*
       requestedRecipeData[0] = category

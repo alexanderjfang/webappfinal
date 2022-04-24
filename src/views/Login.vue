@@ -147,7 +147,7 @@ export default class Homepage extends Vue {
     const provider = new GoogleAuthProvider();
     signInWithPopup(this.auth!, provider)
       .then((cred: UserCredential) => {
-        console.log("Yes, logged in");
+        //console.log("Yes, logged in");
         // Move to the favorites page
         this.$router.push({ path: "/favorites" });
       })
